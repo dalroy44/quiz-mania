@@ -1,0 +1,64 @@
+# Modern GitHub Actions workflow to build and deploy to GitHub Pages
+
+name: Deploy Quiz App to GitHub Pages
+
+# Run this workflow every time a change is pushed to the 'main' branch
+on:
+  push:
+    branches:
+      - main
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Grant the GITHUB_TOKEN permissions to read repository contents and write deployments
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, canceling any older runs
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  # Build job: Compiles the code and uploads it as an artifact
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the project
+        run: npm run build
+
+      - name: Upload artifact for deployment
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload the 'public' directory which contains the built site
+          path: ./public
+
+  # Deploy job: Takes the artifact and deploys it to GitHub Pages
+  deploy:
+    # Requires the 'build' job to have completed successfully
+    needs: build
+
+    # Specifies the deployment environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
