@@ -1,0 +1,23 @@
+{
+  "name": "quiz-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run watch",
+    "build:ts": "tsc",
+    "build:scss": "sass src/scss/main.scss public/css/main.css",
+    "watch:ts": "tsc --watch",
+    "watch:scss": "sass --watch src/scss/main.scss public/css/main.css",
+    "watch": "concurrently \"npm:watch:*\"",
+    "dev": "concurrently \"npm:watch:*\" \"live-server public\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^9.2.0",
+    "sass": "^1.89.2",
+    "typescript": "^5.8.3"
+  }
+}

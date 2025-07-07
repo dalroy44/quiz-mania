@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizMania</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+    <div class="quiz-app-container">
+        <div id="rules-modal" class="modal-overlay hidden">
+            <div class="modal-content">
+                <button class="modal-close" id="modal-close-btn">&times;</button>
+                <h2>Quiz rules</h2>
+
+                <div class="rules-section">
+                    <h3>10-Second Timer</h3>
+                    <ul>
+                        <li>Each question comes with a 10-second timer.</li>
+                        <li>If you don't answer within the time limit, the app will automatically move to the next
+                            question.</li>
+                    </ul>
+                </div>
+
+                <div class="rules-section">
+                    <h3>Manual Navigation</h3>
+                    <ul>
+                        <li>You can navigate to the next question manually before the timer expires.</li>
+                        <li>Use the "Next" button to move ahead if you're ready before the timer runs out.</li>
+                    </ul>
+                </div>
+
+                <div class="rules-section">
+                    <h3>Final Score and Performance Message</h3>
+                    <ul>
+                        <li>After all questions are answered, your final score will be displayed.</li>
+                        <li>Based on your performance, you will receive a personalized message:</li>
+                        <li><strong>Great job!:</strong> If you score <strong>above 80%</strong>.</li>
+                        <li><strong>Well done!:</strong> If you score <strong>between 60% and 80%</strong>.</li>
+                        <li><strong>Keep practicing!:</strong> If you score <strong>below 60%</strong>.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="welcome-page">
+            <header class="quiz-header">
+                <div class="logo">QUIZ<span>Mania</span></div>
+            </header>
+
+            <main>
+                <h1 class="welcome-heading">Welcome to <span>QUIZMania</span></h1>
+
+                <div class="rules-box">
+                    <p>Please read all the rules about this quiz before you start.</p>
+                    <a href="#" id="rules-link">Quiz rules</a>
+                </div>
+
+                <div class="form-group">
+                    <label for="username">Full name</label>
+                    <input type="text" id="username" placeholder="Richard Joe Freds">
+                </div>
+
+                <div class="topic-selection">
+                    <label>Please select topic to continue</label>
+                    <div class="topic-options" id="topic-options-container">
+                    </div>
+                </div>
+
+                <button class="btn-start" id="start-quiz-btn">Start Quiz</button>
+            </main>
+        </div>
+
+        <div id="quiz-page" class="hidden">
+            <header class="quiz-header">
+                <div class="logo">QUIZ<span>Mania</span></div>
+                <button class="btn-exit" id="exit-quiz-btn">Exit Quiz</button>
+            </header>
+
+            <main>
+                <div class="quiz-progress-info">
+                    <div class="question-counter" id="question-counter">1 / 10</div>
+                    <div class="progress-bar">
+                        <div id="progress-bar-fill"></div>
+                    </div>
+                    <div class="timer" id="timer">
+                        <span id="timer-value">0:10</span>
+                    </div>
+                </div>
+
+                <h2 class="question-text" id="question-text">
+                    Which method can be used to round a number to the nearest integer in JavaScript?
+                </h2>
+
+                <div class="answer-options" id="answer-options">
+                </div>
+
+                <div class="quiz-navigation">
+                    <button class="skip-link" id="skip-question-btn">Skip this question</button>
+                    <button class="btn-next" id="next-question-btn">Next</button>
+                </div>
+            </main>
+        </div>
+
+        <div id="score-page" class="hidden">
+            <header class="quiz-header">
+                <div class="logo">QUIZ<span>Mania</span></div>
+                <div class="user-profile">
+                    <div class="avatar" id="user-profile-avatar"></div>
+                    <span id="user-profile-name"></span>
+                </div>
+            </header>
+
+            <main class="score-main-content">
+                <div class="score-icon-wrapper">
+                    <div class="success-icon">
+                        <span>&#10003;</span>
+                    </div>
+                    <div class="failure-icon">
+                        <span>:(</span>
+                    </div>
+                </div>
+
+                <h1 id="score-main-heading" class="congrats-title"></h1>
+                <p id="score-sub-heading"></p>
+
+                <div class="score-display">
+                    <h3>Your Score</h3>
+                    <h2 id="score-percentage"></h2>
+                    <h3 id="score-feedback-message"></h3>
+                </div>
+
+                <div class="score-summary-box">
+                    <p>Out of <span id="summary-total-questions"></span> question</p>
+                    <div class="summary-details">
+                        <div>
+                            <strong id="summary-correct"></strong>
+                            <span>Correct</span>
+                        </div>
+                        <div>
+                            <strong id="summary-incorrect"></strong>
+                            <span>Incorrect</span>
+                        </div>
+                        <div>
+                            <strong id="summary-unanswered"></strong>
+                            <span>Not answered</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-retake" id="restart-btn">Retake Quiz</button>
+            </main>
+        </div>
+
+        <script src="js/app.js"></script>
+</body>
+
+</html>
